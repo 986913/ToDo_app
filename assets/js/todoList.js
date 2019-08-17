@@ -31,6 +31,16 @@ $("ul").on("click","li",(function(){
 $("ul").on("click","span",(function(event){
 	event.stopPropagation();//stopPropagation()is a jQuery method that will stop the event from bubbling up.
 	$(this).parent().fadeOut("10000",function(){
+		let delText=$(this).text();
+		//remove local storage:
+		for(let i=0;i<localStorage.length;i++){
+			let key = localStorage.key(i);
+			let val = localStorage[key];
+			console.log(val);
+			if(` ${val}`==delText){
+				localStorage.removeItem(key);
+			}
+		}
 		$(this).remove();
 	})
 }))
@@ -45,6 +55,10 @@ $("input[type='text']").keypress(function(event){
 		//create a new li and add to ul
 		$("ul").append("<li><span><i class='fa fa-trash'></i></span> "+ todoText + "</li>");
 
+
+		//存入local storage:
+		let date = new Date().toLocaleString();
+		localStorage.setItem(date,todoText);
 	}
 })
 //.append()    it can take a string of html and it will then append those elements to whatever we selected
@@ -53,7 +67,10 @@ $("input[type='text']").keypress(function(event){
 //$("ul").on("click","li",(function(){.....
 // above two's scenod argument : span   li     that means when i click any span and li inside the ul. the function will be executed.
 
-$(".fa-plus").click(function(){
-	$("input[type='text']").fadeToggle();
-});
+//读取本地存储的localhost
+for(let i=0; i<localStorage.length;i++){
+    let key = localStorage.key(i);
+	let val = localStorage[key];
+	$("ul").append("<li><span><i class='fa fa-trash'></i></span> "+ val + "</li>");
+}
 
