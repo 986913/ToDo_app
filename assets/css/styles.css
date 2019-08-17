@@ -18,9 +18,12 @@ li{
 li:nth-child(2n){
 	background: #f7f7f7;
 }
+li:hover{
+	border-bottom: 1px #666 dashed;
+}
 input{
 	font-size: 18px;
-	color: #2980b9;
+	color: #2980b9 !important;
 	background: #f7f7f7;
 	width:100%;
 	border:none;
@@ -70,6 +73,6 @@ span{
 /*animiation*/
 /*li:hover span{....}*   意思是当鼠标在li上hover时，选中span*/
 li:hover span{
-	width: 40px;
+	width: 60px;
 	opacity: 1.0;/* 完全的不透明*/
 }
